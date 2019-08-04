@@ -4,6 +4,15 @@ package cn.skycer.discuzz.model;
  * Created by Johnny on 2019/8/4.
  */
 public class User {
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    private Integer id;
     private String token;
     private String name;
     private String accountID;
