@@ -75,7 +75,7 @@ public class PublishController {
             model.addAttribute("error", "用户未登录");
             return "publish";
         }
-        question.setCreator(user.getId());
+        question.setCreator(user.getAccountID());
         question.setGmtCreate(System.currentTimeMillis());
         question.setGmtModified(question.getGmtCreate());
         questionMapper.create(question);
