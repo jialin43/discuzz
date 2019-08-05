@@ -21,6 +21,6 @@ public class User {
     private String accountID;
     private long gmtCreate;
     private long gmtModified;
-    private String avatar_url;
+    private String avatarUrl;
 
 }
