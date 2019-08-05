@@ -57,19 +57,10 @@ public class PublishController {
         question.setTitle(title);
         question.setDescription(description);
         question.setTag(tag);
-        User user = new User();
-        Cookie[] cookies = request.getCookies();
-        if (cookies != null) {
-            for (Cookie cookie : cookies) {
-                if ("token".equals(cookie.getName())) {
-                    String token = cookie.getValue();
-                    user = userMapper.findByToken(token);
-                    if (user != null) {
-                        request.getSession().setAttribute("user", user);
-                    }
-                    break;
-                }
-            }
+        User user;
+        user = (User) request.getSession().getAttribute("user");
+        if (user.getAccountID() == null) {
+            return "redirect:/";
         }
         if (user == null) {
             model.addAttribute("error", "用户未登录");
