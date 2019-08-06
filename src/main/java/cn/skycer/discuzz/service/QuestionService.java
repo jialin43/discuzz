@@ -1,6 +1,8 @@
 package cn.skycer.discuzz.service;
 
 import cn.skycer.discuzz.dto.QuestionDTO;
+import cn.skycer.discuzz.exception.CustomizeErrorCode;
+import cn.skycer.discuzz.exception.CustomizeException;
 import cn.skycer.discuzz.mapper.QuestionMapper;
 import cn.skycer.discuzz.mapper.UserMapper;
 import cn.skycer.discuzz.model.Question;
@@ -41,6 +43,9 @@ public class QuestionService {
 
     public QuestionDTO getByID(Integer id) {
         Question question = questionMapper.findByID(id);
+        if(question == null){
+            throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
+        }
         QuestionDTO questionDTO = new QuestionDTO();
         BeanUtils.copyProperties(question,questionDTO);
         User user = userMapper.findByID(question.getCreator());
