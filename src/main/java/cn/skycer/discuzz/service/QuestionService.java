@@ -65,4 +65,13 @@ public class QuestionService {
             questionMapper.update(question);
         }
     }
+
+    public void incView(Integer id) {
+        Question question = questionMapper.findByID(id);
+
+        Question updateQuestion = new Question();
+        BeanUtils.copyProperties(question,updateQuestion);
+        updateQuestion.setReadCount(question.getReadCount()+1);
+        questionMapper.update(updateQuestion);
+    }
 }
