@@ -37,10 +37,10 @@ public class ProfileController {
         }
         User user;
         user = (User) request.getSession().getAttribute("user");
-        if (user.getAccountID() == null) {
+        if (user.getAccountId() == null) {
             return "redirect:/";
         }
-        List<Question> list = questionService.list(user.getAccountID());
+        List<Question> list = questionService.list(user.getAccountId());
         model.addAttribute("questions", list);
         return "profile";
     }

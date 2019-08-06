@@ -8,4 +8,4 @@ CREATE TABLE `user` (
   `gmt_modified` bigint(20) DEFAULT NULL,
   `bio` varchar(256) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;

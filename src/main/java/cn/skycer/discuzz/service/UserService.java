@@ -2,8 +2,11 @@ package cn.skycer.discuzz.service;
 
 import cn.skycer.discuzz.mapper.UserMapper;
 import cn.skycer.discuzz.model.User;
+import cn.skycer.discuzz.model.UserExample;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * Created by Johnny on 2019/8/5.
@@ -11,23 +14,29 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserService {
     @Autowired
-    UserMapper userMapper;
-
+    private UserMapper userMapper;
 
     public void createOrUpdate(User user) {
-      User dbUser =   userMapper.findByID(user.getAccountID());
-      if(dbUser ==null){
+      //User dbUser =   userMapper.findByID(user.getAccountID());
+        UserExample userExample = new UserExample();
+        userExample.createCriteria().andAccountIdEqualTo(user.getAccountId());
+        List<User> users = userMapper.selectByExample(userExample);
+      if(users.size()==0){
           //insert
           user.setGmtCreate(System.currentTimeMillis());
           user.setGmtModified(user.getGmtCreate());
           userMapper.insert(user);
       }else {
           //update
-          user.setGmtModified(System.currentTimeMillis());
-          dbUser.setAvatarUrl(user.getAvatarUrl());
-          dbUser.setName(user.getName());
-          dbUser.setToken(user.getToken());
-          userMapper.update(dbUser);
+          User dbUser =users.get(0);
+          User updateUser = new User();
+          updateUser.setGmtModified(System.currentTimeMillis());
+          updateUser.setAvatarUrl(user.getAvatarUrl());
+          updateUser.setName(user.getName());
+          updateUser.setToken(user.getToken());
+          UserExample example = new UserExample();
+          example.createCriteria().andAccountIdEqualTo(dbUser.getAccountId());
+          userMapper.updateByExampleSelective(updateUser, example);
       }
     }
 }

@@ -65,7 +65,7 @@ public class PublishController {
         }
         User user;
         user = (User) request.getSession().getAttribute("user");
-        if (user.getAccountID() == null) {
+        if (user.getAccountId() == null) {
             return "redirect:/";
         }
         if (user == null) {
@@ -76,7 +76,7 @@ public class PublishController {
         question.setTitle(title);
         question.setDescription(description);
         question.setTag(tag);
-        question.setCreator(user.getAccountID());
+        question.setCreator(user.getAccountId());
         question.setGmtCreate(System.currentTimeMillis());
         question.setGmtModified(question.getGmtCreate());
         //questionMapper.create(question);
