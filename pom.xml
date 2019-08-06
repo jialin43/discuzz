@@ -93,6 +93,18 @@
 				<user>root</user>
 			</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.mybatis.generator</groupId>
+				<artifactId>mybatis-generator-maven-plugin</artifactId>
+				<version>1.3.7</version>
+				<dependencies>
+					<dependency>
+						<groupId>mysql</groupId>
+						<artifactId>mysql-connector-java</artifactId>
+						<scope>runtime</scope>
+					</dependency>
+				</dependencies>
+			</plugin>
 		</plugins>
 	</build>
 
