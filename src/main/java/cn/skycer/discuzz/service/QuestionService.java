@@ -76,7 +76,7 @@ public class QuestionService {
             question.setGmtModified(question.getGmtCreate());
             question.setReadCount(0);
             question.setCommentCount(0);
-            question.setCommentCount(0);
+            question.setLikeCount(0);
             //questionMapper.create(question);
             questionMapper.insert(question);
 

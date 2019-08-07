@@ -5,4 +5,5 @@ package cn.skycer.discuzz.exception;
  */
 public interface ICustomizeErrorCode {
     String getMessage();
+    Integer getCode();
 }
